@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:3000', // Frontend origin
+  origin: 'http://localhost:59749', // Frontend origin
   credentials: true, // Allow credentials
 }));
 
@@ -21,6 +21,7 @@ app.use(cors({
 app.use('/', async (req, res) => {
   const targetUrl = req.query.target; // Expecting ?target=<URL>
   console.log('targetUrl', targetUrl);
+  
 
 
   if (!targetUrl) {
@@ -37,6 +38,7 @@ app.use('/', async (req, res) => {
       headers: { ...req.headers },
       withCredentials: true,
     }
+
     // IMPORTANT! This is the core part of the CORS proxy server
     // Drop the headers that are not allowed in CORS requests
     deleted_headers = ['content-length', 'host', 'origin', 'referer'];
